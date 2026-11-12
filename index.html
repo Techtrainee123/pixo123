@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pixo — Instant HTML5 Web Games</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header>
+    <div class="nav-container">
+      <div class="brand" onclick="showCatalog()">
+        <svg width="36" height="36" viewBox="0 0 40 40" fill="none">
+          <rect width="40" height="40" rx="10" fill="var(--accent)"/>
+          <path d="M14 27V13H22C24.7614 13 27 15.2386 27 18C27 20.7614 24.7614 23 22 23H14" stroke="#090B10" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="26" cy="27" r="2.5" fill="#090B10"/>
+        </svg>
+        <span class="brand-name">Pixo</span>
+      </div>
+
+      <div class="search-wrapper">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="searchInput" placeholder="Search 100 HTML5 games..." oninput="filterGames()" />
+      </div>
+
+      <button class="profile-btn" onclick="openProfileModal()">
+        <div class="avatar-circle" id="headerAvatar">👾</div>
+        <span id="headerUsername">Player1</span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <div id="catalog-view">
+      <div class="categories" id="categoryBar">
+        <button class="cat-btn active" onclick="setCategory('All', this)">🔥 All Games</button>
+        <button class="cat-btn" onclick="setCategory('Action', this)">⚔️ Action</button>
+        <button class="cat-btn" onclick="setCategory('Puzzle', this)">🧩 Puzzle</button>
+        <button class="cat-btn" onclick="setCategory('Racing', this)">🏎️ Racing</button>
+        <button class="cat-btn" onclick="setCategory('Multiplayer', this)">🌐 Multiplayer</button>
+        <button class="cat-btn" onclick="setCategory('Arcade', this)">🕹️ Arcade</button>
+        <button class="cat-btn" onclick="setCategory('Favorites', this)">❤️ My Favorites</button>
+      </div>
+
+      <div class="section-meta">
+        <h2 id="sectionTitle">All Games</h2>
+        <span class="game-count" id="gameCount">100 games available</span>
+      </div>
+
+      <div class="game-grid" id="gameGrid"></div>
+    </div>
+
+    <div id="player-view">
+      <div class="player-topbar">
+        <div class="player-info-left">
+          <button class="btn" onclick="showCatalog()">← Back to Games</button>
+          <div>
+            <h2 id="playerTitle">Game Title</h2>
+            <span id="playerCategory" class="player-sub">Category</span>
+          </div>
+        </div>
+        <div class="player-actions">
+          <a id="externalFallbackBtn" href="#" target="_blank" rel="noopener" class="btn">↗ Open Direct</a>
+          <button class="btn" id="favToggleBtn" onclick="toggleFavoriteCurrent()">🤍 Favorite</button>
+          <button class="btn" onclick="toggleTheater()">🖥️ Theater Mode</button>
+          <button class="btn btn-primary" onclick="goFullscreen()">⛶ Fullscreen</button>
+        </div>
+      </div>
+
+      <div class="iframe-shell" id="iframeShell">
+        <iframe
+          id="gameFrame"
+          src=""
+          scrolling="no"
+          allow="fullscreen; gamepad; autoplay; clipboard-write"
+        ></iframe>
+      </div>
+      <button class="theater-exit" onclick="toggleTheater()">✕ Exit Theater Mode</button>
+    </div>
+  </main>
+
+  <div class="modal-backdrop" id="profileModal" onclick="if(event.target===this) closeProfileModal()">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3>Customize Gamer Profile</h3>
+        <button class="btn close-modal-btn" onclick="closeProfileModal()">✕</button>
+      </div>
+
+      <div class="input-group">
+        <label>Username</label>
+        <input type="text" id="usernameInput" maxlength="18" placeholder="Enter gamer tag..." />
+      </div>
+
+      <div class="input-group">
+        <label>Choose Avatar</label>
+        <div class="avatar-grid" id="avatarPicker"></div>
+      </div>
+
+      <div class="input-group">
+        <label>Theme Accent</label>
+        <div class="color-row" id="colorPicker"></div>
+      </div>
+
+      <div class="input-group">
+        <label>Recently Played</label>
+        <div class="recent-list" id="recentGamesList">
+          <span class="empty-msg">No games played yet.</span>
+        </div>
+      </div>
+
+      <button class="btn btn-primary save-profile-btn" onclick="saveProfile()">Save Profile</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
