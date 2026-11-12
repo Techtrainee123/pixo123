@@ -1,3 +1,6 @@
+// =========================================================================
+// 1. 100 RIGTIGE HTML5 & WEBGL SPIL (MED SVG-FORBILLEDER)
+// =========================================================================
 const GH = ".github.io/";
 const WGM = "https://webglmath" + GH;
 const KUB = "https://kubowania" + GH;
@@ -143,6 +146,9 @@ const GAMES_DATA = REAL_100_GAMES.map((item, idx) => ({
   icon: (CAT_THEMES[item[1]] || CAT_THEMES.Arcade).icon,
   coverSvg: buildGameCoverSVG(item[0], item[1], idx)
 }));
+// =========================================================================
+// 2. PROFIL & LOCALSTORAGE
+// =========================================================================
 const AVATARS = ["👾", "🦊", "🤖", "🐱", "🐉", "👽", "🦄", "🐼", "🦁", "🐸", "👻", "🔥"];
 const ACCENTS = ["#00e5ff", "#ff4081", "#00e676", "#ffab00", "#b388ff", "#ff5252"];
 
@@ -168,6 +174,9 @@ function persistProfile() {
   applyProfileUI();
 }
 
+// =========================================================================
+// 3. KATALOG & SØGNING
+// =========================================================================
 function setCategory(category, btnEl) {
   currentCategory = category;
   document.querySelectorAll(".cat-btn").forEach(b => b.classList.remove("active"));
@@ -213,6 +222,9 @@ function filterGames() {
   `).join("");
 }
 
+// =========================================================================
+// 4. SPILAFSPILLER (INDLÆSER RIGTIGE SPIL DIREKTE I IFRAME)
+// =========================================================================
 function launchGame(gameId) {
   const game = GAMES_DATA.find(g => g.id === gameId);
   if (!game) return;
@@ -276,6 +288,9 @@ function goFullscreen() {
   if (shell.requestFullscreen) shell.requestFullscreen();
 }
 
+// =========================================================================
+// 5. PROFIL MODAL
+// =========================================================================
 let tempAvatar = userProfile.avatar;
 let tempAccent = userProfile.accent;
 
