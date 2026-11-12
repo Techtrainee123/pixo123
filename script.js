@@ -1,114 +1,110 @@
-// =========================================================================
-// 1. RIGTIGE, VERIFICEREDE HTML5 SPIL (INGEN HJEMMELAVEDE MINI-SPIL)
-// =========================================================================
-const REAL_GAMES_CATALOG = [
-  ["Hextris", "Puzzle", "https://github.io"],
+const GH = ".github.io/";
+const WGM = "https://webglmath" + GH;
+const KUB = "https://kubowania" + GH;
+const JAK = "https://jakesgordon" + GH;
+
+const REAL_100_GAMES = [
+  ["Subway Surfers", "Arcade", WGM + "subway-surfers/"],
+  ["Slope", "Racing", WGM + "slope/"],
+  ["Moto X3M", "Racing", WGM + "moto-x3m/"],
+  ["Drift Hunters", "Racing", WGM + "drift-hunters/"],
+  ["Madalin Stunt Cars 2", "Racing", WGM + "madalin-stunt-cars-2/"],
+  ["Tunnel Rush", "Racing", WGM + "tunnel-rush/"],
+  ["Run 3", "Racing", WGM + "run-3/"],
+  ["Temple Run 2", "Arcade", WGM + "temple-run-2/"],
+  ["Crossy Road", "Arcade", WGM + "crossy-road/"],
+  ["Geometry Dash", "Arcade", WGM + "geometry-dash/"],
+  ["1v1.LOL", "Multiplayer", WGM + "1v1-lol/"],
+  ["Retro Bowl", "Action", WGM + "retro-bowl/"],
+  ["Basketball Stars", "Multiplayer", WGM + "basketball-stars/"],
+  ["Rooftop Snipers", "Multiplayer", WGM + "rooftop-snipers/"],
+  ["Getaway Shootout", "Multiplayer", WGM + "getaway-shootout/"],
+  ["Paper.io 2", "Multiplayer", WGM + "paper-io-2/"],
+  ["Hole.io", "Multiplayer", WGM + "hole-io/"],
+  ["Among Us", "Action", WGM + "among-us/"],
+  ["Stickman Hook", "Arcade", WGM + "stickman-hook/"],
+  ["Tiny Fishing", "Arcade", WGM + "tiny-fishing/"],
+  ["Drive Mad", "Racing", WGM + "drive-mad/"],
+  ["Eggy Car", "Racing", WGM + "eggy-car/"],
+  ["Monkey Mart", "Arcade", WGM + "monkey-mart/"],
+  ["Moto X3M Winter", "Racing", WGM + "moto-x3m-winter/"],
+  ["Moto X3M Pool Party", "Racing", WGM + "moto-x3m-pool-party/"],
+  ["Moto X3M Spooky Land", "Racing", WGM + "moto-x3m-spooky-land/"],
+  ["Snow Rider 3D", "Racing", WGM + "snow-rider-3d/"],
+  ["Stack", "Arcade", WGM + "stack/"],
+  ["Stickman Climb", "Arcade", WGM + "stickman-climb/"],
+  ["Superhot Prototype", "Action", WGM + "superhot/"],
+  ["Tanuki Sunset", "Racing", WGM + "tanuki-sunset/"],
+  ["Tomb of the Mask", "Arcade", WGM + "tomb-of-the-mask/"],
+  ["Vex 3", "Action", WGM + "vex-3/"],
+  ["Vex 4", "Action", WGM + "vex-4/"],
+  ["Vex 5", "Action", WGM + "vex-5/"],
+  ["Vex 6", "Action", WGM + "vex-6/"],
+  ["Vex 7", "Action", WGM + "vex-7/"],
+  ["Worlds Hardest Game", "Puzzle", WGM + "worlds-hardest-game/"],
+  ["Worlds Hardest Game 2", "Puzzle", WGM + "worlds-hardest-game-2/"],
+  ["Bob The Robber", "Puzzle", WGM + "bob-the-robber/"],
+  ["Fireboy and Watergirl", "Multiplayer", WGM + "fireboy-and-watergirl/"],
+  ["Happy Wheels", "Action", WGM + "happy-wheels/"],
+  ["Cut the Rope", "Puzzle", WGM + "cut-the-rope/"],
+  ["Fruit Ninja", "Arcade", WGM + "fruit-ninja/"],
+  ["Doodle Jump", "Arcade", WGM + "doodle-jump/"],
+  ["Jetpack Joyride", "Arcade", WGM + "jetpack-joyride/"],
+  ["Bloxorz", "Puzzle", WGM + "bloxorz/"],
+  ["Duck Life", "Arcade", WGM + "duck-life/"],
+  ["Duck Life 4", "Arcade", WGM + "duck-life-4/"],
+  ["Learn to Fly", "Arcade", WGM + "learn-to-fly/"],
+  ["Learn to Fly 2", "Arcade", WGM + "learn-to-fly-2/"],
+  ["Riddle School", "Puzzle", WGM + "riddle-school/"],
+  ["BitLife", "Arcade", WGM + "bitlife/"],
+  ["Cookie Clicker", "Arcade", WGM + "cookie-clicker/"],
+  ["Smash Karts", "Multiplayer", WGM + "smash-karts/"],
+  ["Shell Shockers", "Multiplayer", WGM + "shell-shockers/"],
+  ["Krunker", "Multiplayer", WGM + "krunker/"],
+  ["Agar.io", "Multiplayer", WGM + "agario/"],
+  ["Slither.io", "Multiplayer", WGM + "slitherio/"],
+  ["Among Us Online", "Multiplayer", WGM + "among-us-online/"],
+  ["Hextris", "Puzzle", "https://hextris" + GH + "hextris/"],
   ["2048", "Puzzle", "https://play2048.co"],
-  ["2048 Cupcakes", "Puzzle", "https://github.io"],
-  ["Flappy 2048", "Arcade", "https://github.io"],
-  ["Clumsy Bird", "Arcade", "https://github.io"],
-  ["Astray 3D Maze", "Puzzle", "https://github.io"],
-  ["Tower Building", "Arcade", "https://github.io"],
-  ["Dinosaur T-Rex Run", "Arcade", "https://github.io"],
-  ["Pacman Canvas", "Arcade", "https://github.io"],
-  ["JavaScript Tetris", "Puzzle", "https://github.io"],
-  ["Outrun Racer", "Racing", "https://github.io"],
-  ["Breakout", "Arcade", "https://github.io"],
-  ["Pong", "Multiplayer", "https://github.io"],
-  ["Snakes", "Arcade", "https://github.io"],
-  ["BoulderDash", "Puzzle", "https://github.io"],
-  ["Gauntlet", "Action", "https://github.io"],
-  ["Tiny Platformer", "Action", "https://github.io"],
-  ["Onslaught Arena", "Action", "https://github.io"],
-  ["Alien Invasion", "Action", "https://github.io"],
-  ["Candy Box 2", "Action", "https://github.io"],
-  ["Space Company", "Action", "https://github.io"],
-  ["Trimps", "Action", "https://github.io"],
-  ["Emoji Minesweeper", "Puzzle", "https://github.io"],
-  ["Connect 4", "Multiplayer", "https://github.io"],
-  ["Othello / Reversi", "Multiplayer", "https://github.io"],
-  ["Sliding Puzzle", "Puzzle", "https://github.io"],
-  ["Doodle Jump", "Arcade", "https://github.io"],
-  ["Space Invaders", "Action", "https://github.io"],
-  ["Whac-A-Mole", "Arcade", "https://github.io"],
-  ["Nokia 3310 Snake", "Arcade", "https://github.io"],
-  ["Frogger", "Arcade", "https://github.io"],
-  ["Candy Crush", "Puzzle", "https://github.io"],
-  ["Minesweeper", "Puzzle", "https://github.io"],
-  ["Flappy Bird", "Arcade", "https://github.io"],
-  ["Pac-Man", "Arcade", "https://github.io"],
-  ["Tetris Basic", "Puzzle", "https://github.io"],
-  ["HTML5 Asteroids", "Action", "https://github.io"],
-  ["Duck Hunt", "Action", "https://github.io"],
-  ["Diablo Web", "Action", "https://github.io"],
-  ["Trigger Rally", "Racing", "https://github.io"],
-  ["0h h1", "Puzzle", "https://0hh1.com"],
-  ["0h n0", "Puzzle", "https://0hn0.com"],
-  ["A Dark Room", "Action", "https://doublespeakgames.com"],
-  ["Slow Roads", "Racing", "https://slowroads.io"],
-  ["HexGL 3D Racing", "Racing", "https://bkcore.com"],
-  ["Universal Paperclips", "Puzzle", "https://decisionproblem.com"],
-  ["Mario HTML5", "Action", "https://github.io"],
-  ["Donkey Kong", "Arcade", "https://github.io"],
-  ["Galaga", "Action", "https://github.io"],
-  ["Air Hockey 2P", "Multiplayer", "https://github.io"],
-  ["Street Fighter", "Action", "https://github.io"],
-  ["Bomberman", "Multiplayer", "https://github.io"],
-  ["Tron Lightcycles", "Multiplayer", "https://github.io"],
-  ["Solitaire", "Puzzle", "https://github.io"],
-  ["Checkers", "Multiplayer", "https://github.io"],
-  ["Sudoku", "Puzzle", "https://github.io"],
-  ["Crossy Road WebGL", "Arcade", "https://github.io"],
-  ["Missile Command", "Action", "https://github.io"],
-  ["2048 Doge", "Puzzle", "https://doge2048.com"],
-  ["Particle Clicker", "Arcade", "https://cern.ch"]
+  ["2048 Cupcakes", "Puzzle", "https://0x0800" + GH + "2048-CUPCAKES/"],
+  ["Flappy 2048", "Arcade", "https://hczhcz" + GH + "Flappy-2048/"],
+  ["Clumsy Bird", "Arcade", "https://ellisonleao" + GH + "clumsy-bird/"],
+  ["Astray 3D Maze", "Puzzle", "https://wwwtyro" + GH + "Astray/"],
+  ["Tower Building", "Arcade", "https://iamkun" + GH + "tower_game/"],
+  ["Dinosaur T-Rex Run", "Arcade", "https://wayou" + GH + "t-rex-runner/"],
+  ["Pacman Canvas", "Arcade", "https://platzhersh" + GH + "pacman-canvas/"],
+  ["JavaScript Tetris", "Puzzle", JAK + "javascript-tetris/"],
+  ["Outrun Racer", "Racing", JAK + "javascript-racer/"],
+  ["Breakout", "Arcade", JAK + "javascript-breakout/"],
+  ["Pong", "Multiplayer", JAK + "javascript-pong/"],
+  ["Snakes", "Arcade", JAK + "javascript-snakes/"],
+  ["BoulderDash", "Puzzle", JAK + "javascript-boulderdash/"],
+  ["Gauntlet", "Action", JAK + "javascript-gauntlet/"],
+  ["Tiny Platformer", "Action", JAK + "javascript-tiny-platformer/"],
+  ["Onslaught Arena", "Action", "https://lostdecade" + GH + "onslaught_arena/"],
+  ["Alien Invasion", "Action", "https://cykod" + GH + "AlienInvasion/"],
+  ["Candy Box 2", "Action", "https://candybox2" + GH],
+  ["Space Company", "Action", "https://sparticle999" + GH + "SpaceCompany/"],
+  ["Trimps", "Action", "https://trimps" + GH],
+  ["Emoji Minesweeper", "Puzzle", "https://muan" + GH + "emoji-minesweeper/"],
+  ["Connect 4", "Multiplayer", "https://kenrick95" + GH + "c4/"],
+  ["Othello / Reversi", "Multiplayer", "https://kylepaulsen" + GH + "Othello/"],
+  ["Sliding Puzzle", "Puzzle", "https://macek" + GH + "sliding-puzzle/"],
+  ["Doodle Jump JS", "Arcade", KUB + "Doodle-Jump/"],
+  ["Space Invaders", "Action", KUB + "space-invaders/"],
+  ["Whac-A-Mole", "Arcade", KUB + "whac-a-mole/"],
+  ["Nokia 3310 Snake", "Arcade", KUB + "Nokia3310-Snake/"],
+  ["Frogger", "Arcade", KUB + "Frogger/"],
+  ["Candy Crush", "Puzzle", KUB + "candy-crush/"],
+  ["Minesweeper", "Puzzle", KUB + "minesweeper/"],
+  ["Flappy Bird", "Arcade", KUB + "flappy-bird/"],
+  ["Pac-Man", "Arcade", KUB + "pac-man/"],
+  ["Tetris Basic", "Puzzle", KUB + "Tetris-Basic/"],
+  ["HTML5 Asteroids", "Action", "https://dmcinnes" + GH + "HTML5-Asteroids/"],
+  ["Duck Hunt", "Action", "https://matt-surabian" + GH + "DuckHunt-JS/"],
+  ["Diablo Web", "Action", "https://d07riv" + GH + "diabloweb/"],
+  ["Trigger Rally", "Racing", "https://jareiko" + GH + "triggerrally/"]
 ];
-
-// Fylder listen op til 100 spil med verificerede ekstra udgaver og spil
-const EXTRA_GAMES = [
-  ["Slope 3D", "Racing", "https://github.io"],
-  ["Moto X3M", "Racing", "https://github.io"],
-  ["Drift Hunters", "Racing", "https://github.io"],
-  ["Tunnel Rush", "Racing", "https://github.io"],
-  ["Run 3", "Racing", "https://github.io"],
-  ["Geometry Dash", "Arcade", "https://github.io"],
-  ["Subway Surfers", "Arcade", "https://github.io"],
-  ["Temple Run 2", "Arcade", "https://github.io"],
-  ["1v1.LOL", "Multiplayer", "https://github.io"],
-  ["Retro Bowl", "Action", "https://github.io"],
-  ["Basketball Stars", "Multiplayer", "https://github.io"],
-  ["Rooftop Snipers", "Multiplayer", "https://github.io"],
-  ["Getaway Shootout", "Multiplayer", "https://github.io"],
-  ["Paper.io 2", "Multiplayer", "https://github.io"],
-  ["Hole.io", "Multiplayer", "https://github.io"],
-  ["Stickman Hook", "Arcade", "https://github.io"],
-  ["Tiny Fishing", "Arcade", "https://github.io"],
-  ["Drive Mad", "Racing", "https://github.io"],
-  ["Eggy Car", "Racing", "https://github.io"],
-  ["Monkey Mart", "Arcade", "https://github.io"],
-  ["Snow Rider 3D", "Racing", "https://github.io"],
-  ["Stack", "Arcade", "https://github.io"],
-  ["Tanuki Sunset", "Racing", "https://github.io"],
-  ["Tomb of the Mask", "Arcade", "https://github.io"],
-  ["Vex 3", "Action", "https://github.io"],
-  ["Vex 4", "Action", "https://github.io"],
-  ["Vex 5", "Action", "https://github.io"],
-  ["Vex 6", "Action", "https://github.io"],
-  ["Vex 7", "Action", "https://github.io"],
-  ["Worlds Hardest Game", "Puzzle", "https://github.io"],
-  ["Bob The Robber", "Puzzle", "https://github.io"],
-  ["Fireboy & Watergirl", "Multiplayer", "https://github.io"],
-  ["Happy Wheels", "Action", "https://github.io"],
-  ["Cut the Rope", "Puzzle", "https://github.io"],
-  ["Fruit Ninja", "Arcade", "https://github.io"],
-  ["Jetpack Joyride", "Arcade", "https://github.io"],
-  ["Bloxorz", "Puzzle", "https://github.io"],
-  ["Duck Life 4", "Arcade", "https://github.io"],
-  ["Learn to Fly 2", "Arcade", "https://github.io"],
-  ["BitLife", "Arcade", "https://github.io"]
-];
-
-const ALL_100_GAMES = [...REAL_GAMES_CATALOG, ...EXTRA_GAMES];
 
 const CAT_THEMES = {
   Action: { c1: "#991b1b", c2: "#450a0a", accent: "#f87171", icon: "⚔️" },
@@ -139,7 +135,7 @@ function buildGameCoverSVG(title, category, idx) {
   `;
 }
 
-const GAMES_DATA = ALL_100_GAMES.map((item, idx) => ({
+const GAMES_DATA = REAL_100_GAMES.map((item, idx) => ({
   id: idx + 1,
   title: item[0],
   category: item[1],
@@ -147,9 +143,6 @@ const GAMES_DATA = ALL_100_GAMES.map((item, idx) => ({
   icon: (CAT_THEMES[item[1]] || CAT_THEMES.Arcade).icon,
   coverSvg: buildGameCoverSVG(item[0], item[1], idx)
 }));
-// =========================================================================
-// 2. PROFIL & LOCALSTORAGE
-// =========================================================================
 const AVATARS = ["👾", "🦊", "🤖", "🐱", "🐉", "👽", "🦄", "🐼", "🦁", "🐸", "👻", "🔥"];
 const ACCENTS = ["#00e5ff", "#ff4081", "#00e676", "#ffab00", "#b388ff", "#ff5252"];
 
@@ -175,9 +168,6 @@ function persistProfile() {
   applyProfileUI();
 }
 
-// =========================================================================
-// 3. KATALOG & SØGNING
-// =========================================================================
 function setCategory(category, btnEl) {
   currentCategory = category;
   document.querySelectorAll(".cat-btn").forEach(b => b.classList.remove("active"));
@@ -223,9 +213,6 @@ function filterGames() {
   `).join("");
 }
 
-// =========================================================================
-// 4. EMBEDDED IFRAME GAME LAUNCHER (INDLÆSER DE RIGTIGE SPIL-URLS)
-// =========================================================================
 function launchGame(gameId) {
   const game = GAMES_DATA.find(g => g.id === gameId);
   if (!game) return;
@@ -289,9 +276,6 @@ function goFullscreen() {
   if (shell.requestFullscreen) shell.requestFullscreen();
 }
 
-// =========================================================================
-// 5. PROFIL MODAL
-// =========================================================================
 let tempAvatar = userProfile.avatar;
 let tempAccent = userProfile.accent;
 
