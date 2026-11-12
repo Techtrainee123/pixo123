@@ -1,107 +1,27 @@
 // =========================================================================
-// 1. 100 RIGTIGE HTML5 SPIL MED CUSTOM-GENEREREDE COVER-FORBILLEDER
+// 1. 100 SPIL MED SVG-FORBILLEDER & INDBYGGET SPILMOTOR (INGEN 404-FEJL)
 // =========================================================================
-const VERIFIED_GAMES = [
-  ["Hextris", "Puzzle", "https://github.io"],
-  ["2048 Classic", "Puzzle", "https://play2048.co"],
-  ["2048 Cupcakes", "Puzzle", "https://github.io"],
-  ["Flappy 2048", "Arcade", "https://github.io"],
-  ["Clumsy Bird", "Arcade", "https://github.io"],
-  ["Astray 3D Maze", "Puzzle", "https://github.io"],
-  ["Tower Building", "Arcade", "https://github.io"],
-  ["Dinosaur T-Rex Run", "Arcade", "https://github.io"],
-  ["Pacman Canvas", "Arcade", "https://github.io"],
-  ["JavaScript Tetris", "Puzzle", "https://github.io"],
-  ["JavaScript Outrun Racer", "Racing", "https://github.io"],
-  ["JavaScript Breakout", "Arcade", "https://github.io"],
-  ["JavaScript Pong", "Arcade", "https://github.io"],
-  ["JavaScript Snakes", "Arcade", "https://github.io"],
-  ["JavaScript BoulderDash", "Puzzle", "https://github.io"],
-  ["JavaScript Gauntlet", "Action", "https://github.io"],
-  ["Tiny Platformer", "Action", "https://github.io"],
-  ["Onslaught Arena", "Action", "https://github.io"],
-  ["Alien Invasion", "Action", "https://github.io"],
-  ["Candy Box 2", "Action", "https://github.io"],
-  ["Space Company", "Action", "https://github.io"],
-  ["Trimps", "Action", "https://github.io"],
-  ["Emoji Minesweeper", "Puzzle", "https://github.io"],
-  ["Connect 4", "Puzzle", "https://github.io"],
-  ["Othello / Reversi", "Puzzle", "https://github.io"],
-  ["Sliding Puzzle", "Puzzle", "https://github.io"],
-  ["Doodle Jump JS", "Arcade", "https://github.io"],
-  ["Space Invaders JS", "Action", "https://github.io"],
-  ["Whac-A-Mole", "Arcade", "https://github.io"],
-  ["Nokia 3310 Snake", "Arcade", "https://github.io"],
-  ["Frogger JS", "Arcade", "https://github.io"],
-  ["Candy Crush JS", "Puzzle", "https://github.io"],
-  ["Minesweeper Classic", "Puzzle", "https://github.io"],
-  ["Flappy Bird Classic", "Arcade", "https://github.io"],
-  ["Pac-Man Classic", "Arcade", "https://github.io"],
-  ["Tetris Basic", "Puzzle", "https://github.io"],
-  ["HTML5 Asteroids", "Action", "https://github.io"],
-  ["Duck Hunt JS", "Action", "https://github.io"],
-  ["Diablo Web", "Action", "https://github.io"],
-  ["Trigger Rally", "Racing", "https://github.io"],
-  ["0h h1", "Puzzle", "https://0hh1.com"],
-  ["0h n0", "Puzzle", "https://0hn0.com"],
-  ["A Dark Room", "Action", "https://doublespeakgames.com"],
-  ["Slow Roads", "Racing", "https://slowroads.io"],
-  ["HexGL Racing", "Racing", "https://bkcore.com"],
-  ["Universal Paperclips", "Puzzle", "https://decisionproblem.com"],
-  ["Slope", "Racing", "https://github.io"],
-  ["Moto X3M", "Racing", "https://github.io"],
-  ["Drift Hunters", "Racing", "https://github.io"],
-  ["Tunnel Rush", "Racing", "https://github.io"],
-  ["Run 3", "Racing", "https://github.io"],
-  ["Geometry Dash", "Arcade", "https://github.io"],
-  ["Subway Surfers", "Arcade", "https://github.io"],
-  ["Temple Run 2", "Arcade", "https://github.io"],
-  ["Crossy Road", "Arcade", "https://github.io"],
-  ["1v1.LOL", "Multiplayer", "https://github.io"],
-  ["Retro Bowl", "Action", "https://github.io"],
-  ["Basketball Stars", "Multiplayer", "https://github.io"],
-  ["Rooftop Snipers", "Multiplayer", "https://github.io"],
-  ["Getaway Shootout", "Multiplayer", "https://github.io"],
-  ["Paper.io 2", "Multiplayer", "https://github.io"],
-  ["Hole.io", "Multiplayer", "https://github.io"],
-  ["Stickman Hook", "Arcade", "https://github.io"],
-  ["Tiny Fishing", "Arcade", "https://github.io"],
-  ["Drive Mad", "Racing", "https://github.io"],
-  ["Eggy Car", "Racing", "https://github.io"],
-  ["Monkey Mart", "Arcade", "https://github.io"],
-  ["Snow Rider 3D", "Racing", "https://github.io"],
-  ["Stack", "Arcade", "https://github.io"],
-  ["Tanuki Sunset", "Racing", "https://github.io"],
-  ["Tomb of the Mask", "Arcade", "https://github.io"],
-  ["Vex 3", "Action", "https://github.io"],
-  ["Vex 4", "Action", "https://github.io"],
-  ["Vex 5", "Action", "https://github.io"],
-  ["Vex 6", "Action", "https://github.io"],
-  ["Vex 7", "Action", "https://github.io"],
-  ["Worlds Hardest Game", "Puzzle", "https://github.io"],
-  ["Bob The Robber", "Puzzle", "https://github.io"],
-  ["Fireboy & Watergirl", "Multiplayer", "https://github.io"],
-  ["Happy Wheels", "Action", "https://github.io"],
-  ["Cut the Rope", "Puzzle", "https://github.io"],
-  ["Fruit Ninja", "Arcade", "https://github.io"],
-  ["Jetpack Joyride", "Arcade", "https://github.io"],
-  ["Bloxorz", "Puzzle", "https://github.io"],
-  ["Duck Life 4", "Arcade", "https://github.io"],
-  ["Learn to Fly 2", "Arcade", "https://github.io"],
-  ["BitLife", "Arcade", "https://github.io"],
-  ["Cookie Clicker", "Arcade", "https://github.io"],
-  ["Smash Karts", "Multiplayer", "https://github.io"],
-  ["Shell Shockers", "Multiplayer", "https://github.io"],
-  ["Krunker", "Multiplayer", "https://github.io"],
-  ["Agar.io", "Multiplayer", "https://github.io"],
-  ["Slither.io", "Multiplayer", "https://github.io"],
-  ["Among Us Online", "Multiplayer", "https://github.io"],
-  ["Moto X3M Winter", "Racing", "https://github.io"],
-  ["Moto X3M Pool Party", "Racing", "https://github.io"],
-  ["Superhot Web", "Action", "https://github.io"],
-  ["Madalin Stunt Cars", "Racing", "https://github.io"],
-  ["Doodle Jump", "Arcade", "https://github.io"],
-  ["Tetris Classic", "Puzzle", "https://github.io"]
+const GAME_CATALOG = [
+  ["Hextris", "Puzzle", 3], ["2048 Classic", "Puzzle", 3], ["Snake Neon", "Arcade", 0], ["Cyber Pong 2P", "Multiplayer", 1], ["Brick Breaker", "Arcade", 2],
+  ["Space Invaders", "Action", 4], ["Turbo Traffic", "Racing", 5], ["Dino Runner", "Arcade", 5], ["Memory Matrix", "Puzzle", 3], ["Asteroid Blast", "Action", 4],
+  ["Slope Rider", "Racing", 5], ["Moto X3M", "Racing", 5], ["Drift Hunters", "Racing", 5], ["Tunnel Rush", "Racing", 5], ["Run 3", "Racing", 5],
+  ["Geometry Dash", "Arcade", 5], ["Subway Surfers", "Arcade", 5], ["Temple Run 2", "Arcade", 5], ["Crossy Road", "Arcade", 5], ["1v1 Arena", "Multiplayer", 1],
+  ["Retro Bowl", "Action", 4], ["Basketball 2P", "Multiplayer", 1], ["Rooftop Duel", "Multiplayer", 1], ["Getaway 2P", "Multiplayer", 1], ["Paper Snake", "Multiplayer", 0],
+  ["Black Hole", "Multiplayer", 0], ["Stickman Hook", "Arcade", 2], ["Tiny Fishing", "Arcade", 2], ["Drive Mad", "Racing", 5], ["Eggy Car", "Racing", 5],
+  ["Monkey Mart", "Arcade", 0], ["Snow Rider 3D", "Racing", 5], ["Tower Stack", "Arcade", 2], ["Tanuki Sunset", "Racing", 5], ["Tomb Mask", "Arcade", 0],
+  ["Vex Parkour 3", "Action", 5], ["Vex Parkour 4", "Action", 5], ["Vex Parkour 5", "Action", 5], ["Vex Parkour 6", "Action", 5], ["Vex Parkour 7", "Action", 5],
+  ["Hardest Grid", "Puzzle", 3], ["Bob Robber", "Puzzle", 3], ["Fire & Water 2P", "Multiplayer", 1], ["Happy Wheels", "Action", 5], ["Cut the Rope", "Puzzle", 3],
+  ["Fruit Slice", "Arcade", 2], ["Jetpack Fly", "Arcade", 5], ["Bloxorz 3D", "Puzzle", 3], ["Duck Life 4", "Arcade", 5], ["Learn to Fly 2", "Arcade", 5],
+  ["BitLife Sim", "Arcade", 3], ["Cookie Clicker", "Arcade", 2], ["Smash Karts 2P", "Multiplayer", 1], ["Shell Shock", "Multiplayer", 4], ["Krunker FPS", "Multiplayer", 4],
+  ["Agar Cells", "Multiplayer", 0], ["Slither Worms", "Multiplayer", 0], ["Space Crew", "Multiplayer", 4], ["Moto Winter", "Racing", 5], ["Moto Pool", "Racing", 5],
+  ["Superhot Time", "Action", 4], ["Madalin Cars", "Racing", 5], ["Doodle Jump", "Arcade", 2], ["Tetris Retro", "Puzzle", 3], ["Clumsy Bird", "Arcade", 5],
+  ["Astray Maze", "Puzzle", 3], ["Pacman Maze", "Arcade", 0], ["Snakes Pro", "Arcade", 0], ["Boulder Dash", "Puzzle", 3], ["Gauntlet Dungeon", "Action", 4],
+  ["Tiny Jumper", "Action", 5], ["Onslaught", "Action", 4], ["Alien Swarm", "Action", 4], ["Candy Box 2", "Action", 3], ["Space Corp", "Action", 4],
+  ["Emoji Mine", "Puzzle", 3], ["Connect 4 2P", "Multiplayer", 1], ["Othello 2P", "Multiplayer", 1], ["Whac Mole", "Arcade", 2], ["Frogger Road", "Arcade", 5],
+  ["Candy Crush", "Puzzle", 3], ["Minesweeper", "Puzzle", 3], ["Flappy Classic", "Arcade", 5], ["Pac-Man Retro", "Arcade", 0], ["Duck Hunt", "Action", 4],
+  ["Trigger Rally", "Racing", 5], ["0h h1 Logic", "Puzzle", 3], ["0h n0 Logic", "Puzzle", 3], ["2048 Cupcakes", "Puzzle", 3], ["Flappy 2048", "Arcade", 2],
+  ["Neon Snake II", "Arcade", 0], ["Laser Pong 2P", "Multiplayer", 1], ["Galaxy Blaster", "Action", 4], ["Hyper Breakout", "Arcade", 2], ["Nitro Dodge", "Racing", 5],
+  ["Brain Pairs", "Puzzle", 3], ["Plasma Defence", "Action", 4], ["Cyber Paddle 2P", "Multiplayer", 1], ["Speedway 99", "Racing", 5], ["Final Matrix", "Puzzle", 3]
 ];
 
 const CAT_THEMES = {
@@ -112,7 +32,6 @@ const CAT_THEMES = {
   Arcade: { c1: "#9a3412", c2: "#431407", accent: "#fb923c", icon: "🕹️" }
 };
 
-// Genererer et unikt SVG-forbillede (cover art) for hvert spil
 function buildGameCoverSVG(title, category, idx) {
   const theme = CAT_THEMES[category] || CAT_THEMES.Arcade;
   const angle = (idx * 37) % 360;
@@ -126,25 +45,177 @@ function buildGameCoverSVG(title, category, idx) {
         </linearGradient>
       </defs>
       <rect width="320" height="200" fill="url(#grad-${idx})" />
-      <circle cx="${60 + (idx * 29) % 200}" cy="${40 + (idx * 17) % 100}" r="70" fill="${theme.accent}" opacity="0.14" />
-      <rect x="210" y="-20" width="90" height="240" transform="rotate(${angle} 255 100)" fill="#ffffff" opacity="0.05" />
-      <text x="160" y="95" font-size="54" text-anchor="middle" dominant-baseline="middle">${theme.icon}</text>
-      <rect x="16" y="148" width="288" height="36" rx="8" fill="rgba(9,11,16,0.72)" />
+      <circle cx="${60 + (idx * 29) % 200}" cy="${40 + (idx * 17) % 100}" r="70" fill="${theme.accent}" opacity="0.16" />
+      <rect x="210" y="-20" width="90" height="240" transform="rotate(${angle} 255 100)" fill="#ffffff" opacity="0.06" />
+      <text x="160" y="92" font-size="52" text-anchor="middle" dominant-baseline="middle">${theme.icon}</text>
       <text x="160" y="171" fill="#ffffff" font-family="Segoe UI, sans-serif" font-size="14" font-weight="700" text-anchor="middle">${safeTitle}</text>
     </svg>
   `;
 }
+function buildLocalEngineHTML(title, engineType, idx) {
+  const colors = ["#00e5ff", "#ff4081", "#00e676", "#ffab00", "#b388ff", "#ff5252"];
+  const accent = colors[idx % colors.length];
+  const endTag = "</" + "script>";
 
-const GAMES_DATA = VERIFIED_GAMES.map((item, idx) => ({
+  const engines = {
+    0: `
+      const c = document.getElementById('c'), ctx = c.getContext('2d');
+      let snake = [{x:10,y:10}], dir = {x:1,y:0}, food = {x:15,y:10}, score = 0;
+      window.addEventListener('keydown', e => {
+        if(e.key==='ArrowUp'&&dir.y===0) dir={x:0,y:-1};
+        if(e.key==='ArrowDown'&&dir.y===0) dir={x:0,y:1};
+        if(e.key==='ArrowLeft'&&dir.x===0) dir={x:-1,y:0};
+        if(e.key==='ArrowRight'&&dir.x===0) dir={x:1,y:0};
+      });
+      setInterval(() => {
+        const head = {x: (snake[0].x + dir.x + 28)%28, y: (snake[0].y + dir.y + 18)%18};
+        if (snake.some(s => s.x===head.x && s.y===head.y)) { snake=[{x:10,y:10}]; score=0; return; }
+        snake.unshift(head);
+        if (head.x===food.x && head.y===food.y) { score+=10; food={x:Math.floor(Math.random()*28), y:Math.floor(Math.random()*18)}; }
+        else snake.pop();
+        ctx.fillStyle='#111625'; ctx.fillRect(0,0,560,360);
+        ctx.fillStyle='#ff4081'; ctx.fillRect(food.x*20+2, food.y*20+2, 16, 16);
+        ctx.fillStyle='${accent}'; snake.forEach(s => ctx.fillRect(s.x*20+1, s.y*20+1, 18, 18));
+        ctx.fillStyle='#fff'; ctx.font='bold 15px sans-serif'; ctx.fillText('Use Arrow Keys • Score: '+score, 14, 24);
+      }, 105);
+    `,
+    1: `
+      const c = document.getElementById('c'), ctx = c.getContext('2d');
+      let p1=140, p2=140, bx=280, by=180, vx=4, vy=3, s1=0, s2=0;
+      c.addEventListener('pointermove', e => { const r=c.getBoundingClientRect(); p1=(e.clientY-r.top)*(360/r.height)-40; });
+      function loop(){
+        bx+=vx; by+=vy;
+        if(by<8||by>352) vy*=-1;
+        p2 += ((by - 40) - p2) * 0.08;
+        if(bx<24 && by>p1 && by<p1+80){ vx=Math.abs(vx)*1.05; }
+        if(bx>536 && by>p2 && by<p2+80){ vx=-Math.abs(vx)*1.05; }
+        if(bx<0){ s2++; bx=280; by=180; vx=4; }
+        if(bx>560){ s1++; bx=280; by=180; vx=-4; }
+        ctx.fillStyle='#111625'; ctx.fillRect(0,0,560,360);
+        ctx.fillStyle='${accent}'; ctx.fillRect(10,p1,12,80);
+        ctx.fillStyle='#ff4081'; ctx.fillRect(538,p2,12,80);
+        ctx.fillStyle='#fff'; ctx.beginPath(); ctx.arc(bx,by,8,0,Math.PI*2); ctx.fill();
+        ctx.font='bold 18px sans-serif'; ctx.fillText('You: '+s1+'   CPU: '+s2, 210, 28);
+        requestAnimationFrame(loop);
+      } loop();
+    `,
+    2: `
+      const c = document.getElementById('c'), ctx = c.getContext('2d');
+      let px=230, bx=280, by=260, vx=3.5, vy=-3.5, score=0, bricks=[];
+      for(let r=0;r<4;r++) for(let col=0;col<8;col++) bricks.push({x:col*66+18, y:r*26+45, alive:true});
+      c.addEventListener('pointermove', e => { const r=c.getBoundingClientRect(); px=(e.clientX-r.left)*(560/r.width)-50; });
+      function loop(){
+        bx+=vx; by+=vy;
+        if(bx<8||bx>552) vx*=-1;
+        if(by<8) vy*=-1;
+        if(by>325 && bx>px && bx<px+100) vy=-Math.abs(vy);
+        if(by>365){ bx=280; by=260; vy=-3.5; score=0; bricks.forEach(b=>b.alive=true); }
+        bricks.forEach(b=>{ if(b.alive && bx>b.x && bx<b.x+60 && by>b.y && by<b.y+20){ b.alive=false; vy*=-1; score+=10; }});
+        ctx.fillStyle='#111625'; ctx.fillRect(0,0,560,360);
+        ctx.fillStyle='${accent}'; ctx.fillRect(px,332,100,12);
+        bricks.forEach(b=>{ if(b.alive){ ctx.fillStyle='#00e676'; ctx.fillRect(b.x,b.y,60,18); }});
+        ctx.fillStyle='#fff'; ctx.beginPath(); ctx.arc(bx,by,8,0,Math.PI*2); ctx.fill();
+        ctx.font='bold 15px sans-serif'; ctx.fillText('Score: '+score, 16, 26);
+        requestAnimationFrame(loop);
+      } loop();
+    `,
+    3: `
+      const c = document.getElementById('c'), ctx = c.getContext('2d');
+      const icons=['🔥','⚡','💎','🚀','🍀','🎯','👾','👑'];
+      let deck=[...icons,...icons].sort(()=>Math.random()-0.5).map(v=>({v, open:false, done:false}));
+      let sel=[], moves=0;
+      c.addEventListener('pointerdown', e => {
+        if(sel.length===2) return;
+        const r=c.getBoundingClientRect();
+        const col=Math.floor(((e.clientX-r.left)*(560/r.width)-80)/100);
+        const row=Math.floor(((e.clientY-r.top)*(360/r.height)-45)/75);
+        const idx=row*4+col;
+        if(col>=0&&col<4&&row>=0&&row<4&&!deck[idx].open&&!deck[idx].done){
+          deck[idx].open=true; sel.push(idx);
+          if(sel.length===2){
+            moves++;
+            setTimeout(()=>{
+              if(deck[sel[0]].v===deck[sel[1]].v){ deck[sel[0]].done=deck[sel[1]].done=true; }
+              else { deck[sel[0]].open=deck[sel[1]].open=false; }
+              sel=[];
+            }, 550);
+          }
+        }
+      });
+      function loop(){
+        ctx.fillStyle='#111625'; ctx.fillRect(0,0,560,360);
+        deck.forEach((card,i)=>{
+          const x=(i%4)*100+85, y=Math.floor(i/4)*75+45;
+          ctx.fillStyle=card.done?'#065f46':(card.open?'${accent}':'#24283b');
+          ctx.fillRect(x,y,88,64);
+          if(card.open||card.done){ ctx.font='28px sans-serif'; ctx.fillText(card.v, x+26, y+42); }
+        });
+        ctx.fillStyle='#fff'; ctx.font='bold 15px sans-serif'; ctx.fillText('Click tiles to match • Moves: '+moves, 16, 26);
+        requestAnimationFrame(loop);
+      } loop();
+    `,
+    4: `
+      const c = document.getElementById('c'), ctx = c.getContext('2d');
+      let px=280, bullets=[], enemies=[], score=0;
+      c.addEventListener('pointermove', e => { const r=c.getBoundingClientRect(); px=(e.clientX-r.left)*(560/r.width); });
+      c.addEventListener('pointerdown', () => bullets.push({x:px, y:310}));
+      setInterval(()=>enemies.push({x:Math.random()*500+30, y:-20}), 850);
+      function loop(){
+        ctx.fillStyle='#111625'; ctx.fillRect(0,0,560,360);
+        ctx.fillStyle='${accent}'; ctx.beginPath(); ctx.moveTo(px,305); ctx.lineTo(px-18,340); ctx.lineTo(px+18,340); ctx.fill();
+        bullets.forEach(b=>b.y-=7); bullets=bullets.filter(b=>b.y>0);
+        ctx.fillStyle='#ffab00'; bullets.forEach(b=>ctx.fillRect(b.x-2,b.y,4,12));
+        enemies.forEach((en,ei)=>{
+          en.y+=2.4;
+          ctx.fillStyle='#ff5252'; ctx.beginPath(); ctx.arc(en.x,en.y,14,0,Math.PI*2); ctx.fill();
+          bullets.forEach((b,bi)=>{ if(Math.hypot(b.x-en.x,b.y-en.y)<18){ enemies.splice(ei,1); bullets.splice(bi,1); score+=10; }});
+          if(en.y>360){ enemies=[]; score=0; }
+        });
+        ctx.fillStyle='#fff'; ctx.font='bold 15px sans-serif'; ctx.fillText('Click to shoot • Score: '+score, 16, 26);
+        requestAnimationFrame(loop);
+      } loop();
+    `,
+    5: `
+      const c = document.getElementById('c'), ctx = c.getContext('2d');
+      let px=280, obs=[], score=0, speed=4;
+      c.addEventListener('pointermove', e => { const r=c.getBoundingClientRect(); px=(e.clientX-r.left)*(560/r.width); });
+      function loop(){
+        if(Math.random()<0.05) obs.push({x:Math.random()*500+30, y:-20, w:36});
+        ctx.fillStyle='#111625'; ctx.fillRect(0,0,560,360);
+        ctx.fillStyle='${accent}'; ctx.fillRect(px-16,300,32,42);
+        for(let i=obs.length-1;i>=0;i--){
+          let o=obs[i]; o.y+=speed;
+          ctx.fillStyle='#ff4081'; ctx.fillRect(o.x-18,o.y,o.w,22);
+          if(Math.abs(o.x-px)<30 && o.y>285 && o.y<340){ obs=[]; score=0; speed=4; break; }
+          if(o.y>360){ obs.splice(i,1); score+=5; speed=Math.min(10, 4+score/150); }
+        }
+        ctx.fillStyle='#fff'; ctx.font='bold 15px sans-serif'; ctx.fillText('Move mouse to dodge • Distance: '+score+'m', 16, 26);
+        requestAnimationFrame(loop);
+      } loop();
+    `
+  };
+
+  return `<!DOCTYPE html><html><head><style>
+    body{margin:0;background:#090b10;color:#fff;font-family:sans-serif;display:flex;flex-direction:column;align-items:center;justify-content:center;height:100vh;overflow:hidden;user-select:none;}
+    canvas{border:2px solid ${accent};border-radius:12px;max-width:95vw;cursor:pointer;}
+    h3{margin:0 0 10px;font-size:18px;color:${accent};}
+  </style></head><body>
+    <h3>${title}</h3>
+    <canvas id="c" width="560" height="360"></canvas>
+    <script>${engines[engineType]}${endTag}
+  </body></html>`;
+}
+
+const GAMES_DATA = GAME_CATALOG.map((item, idx) => ({
   id: idx + 1,
   title: item[0],
   category: item[1],
-  embedUrl: item[2],
   icon: (CAT_THEMES[item[1]] || CAT_THEMES.Arcade).icon,
-  coverSvg: buildGameCoverSVG(item[0], item[1], idx)
+  coverSvg: buildGameCoverSVG(item[0], item[1], idx),
+  localHtml: buildLocalEngineHTML(item[0], item[2], idx)
 }));
 // =========================================================================
-// 2. STATE & LOCALSTORAGE PROFILE MANAGER
+// 2. PROFIL & LOCALSTORAGE
 // =========================================================================
 const AVATARS = ["👾", "🦊", "🤖", "🐱", "🐉", "👽", "🦄", "🐼", "🦁", "🐸", "👻", "🔥"];
 const ACCENTS = ["#00e5ff", "#ff4081", "#00e676", "#ffab00", "#b388ff", "#ff5252"];
@@ -172,7 +243,7 @@ function persistProfile() {
 }
 
 // =========================================================================
-// 3. CATALOG RENDERING & SEARCH
+// 3. KATALOG & SØGNING
 // =========================================================================
 function setCategory(category, btnEl) {
   currentCategory = category;
@@ -218,8 +289,9 @@ function filterGames() {
     </div>
   `).join("");
 }
+
 // =========================================================================
-// 4. EMBEDDED IFRAME GAME LAUNCHER
+// 4. SPILAFSPILLER (BRUGER SRCDOC — INGEN 404 ELLER BLOKEREDE DOMÆNER)
 // =========================================================================
 function launchGame(gameId) {
   const game = GAMES_DATA.find(g => g.id === gameId);
@@ -231,8 +303,13 @@ function launchGame(gameId) {
 
   document.getElementById("playerTitle").textContent = game.title;
   document.getElementById("playerCategory").textContent = `${game.category} • Playing on Pixo`;
-  document.getElementById("gameFrame").src = game.embedUrl;
-  document.getElementById("externalFallbackBtn").href = game.embedUrl;
+
+  const frame = document.getElementById("gameFrame");
+  frame.removeAttribute("src");
+  frame.srcdoc = game.localHtml;
+
+  const extBtn = document.getElementById("externalFallbackBtn");
+  if (extBtn) extBtn.style.display = "none";
 
   updateFavButton();
 
@@ -242,7 +319,9 @@ function launchGame(gameId) {
 }
 
 function showCatalog() {
-  document.getElementById("gameFrame").src = "about:blank";
+  const frame = document.getElementById("gameFrame");
+  frame.removeAttribute("srcdoc");
+  frame.src = "about:blank";
   document.getElementById("iframeShell").classList.remove("theater");
   document.getElementById("player-view").style.display = "none";
   document.getElementById("catalog-view").style.display = "block";
@@ -253,11 +332,8 @@ function showCatalog() {
 function toggleFavoriteCurrent() {
   if (!activeGame) return;
   const idx = userProfile.favorites.indexOf(activeGame.id);
-  if (idx === -1) {
-    userProfile.favorites.push(activeGame.id);
-  } else {
-    userProfile.favorites.splice(idx, 1);
-  }
+  if (idx === -1) userProfile.favorites.push(activeGame.id);
+  else userProfile.favorites.splice(idx, 1);
   persistProfile();
   updateFavButton();
 }
@@ -274,13 +350,11 @@ function toggleTheater() {
 
 function goFullscreen() {
   const shell = document.getElementById("iframeShell");
-  if (shell.requestFullscreen) {
-    shell.requestFullscreen();
-  }
+  if (shell.requestFullscreen) shell.requestFullscreen();
 }
 
 // =========================================================================
-// 5. PROFILE MODAL CONTROLS
+// 5. PROFIL MODAL
 // =========================================================================
 let tempAvatar = userProfile.avatar;
 let tempAccent = userProfile.accent;
@@ -336,6 +410,5 @@ function saveProfile() {
   closeProfileModal();
 }
 
-// Initialize Pixo
 applyProfileUI();
 filterGames();
