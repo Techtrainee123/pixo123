@@ -1,6 +1,3 @@
-// =========================================================================
-// 1. 100 VERIFICEREDE, AKTIVE HTML5 SPIL (INGEN DØDE 404-LINKS)
-// =========================================================================
 const GH = ".github.io/";
 const KUB = "https://kubowania" + GH;
 const JAK = "https://jakesgordon" + GH;
@@ -119,7 +116,7 @@ const CAT_THEMES = {
 function buildGameCoverSVG(title, category, idx) {
   const theme = CAT_THEMES[category] || CAT_THEMES.Arcade;
   const angle = (idx * 37) % 360;
-  const safeTitle = title.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  const safeTitle = String(title).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
   return `
     <svg class="thumb-svg" viewBox="0 0 320 200" xmlns="http://w3.org">
       <defs>
@@ -137,17 +134,20 @@ function buildGameCoverSVG(title, category, idx) {
   `;
 }
 
-const GAMES_DATA = ACTIVE_100_GAMES.map((item, idx) => ({
-  id: idx + 1,
-  title: item,
-  category: item,
-  embedUrl: item,
-  icon: (CAT_THEMES[item] || CAT_THEMES.Arcade).icon,
-  coverSvg: buildGameCoverSVG(item, item, idx)
-}));
-// =========================================================================
-// 2. PROFIL & LOCALSTORAGE
-// =========================================================================
+const GAMES_DATA = ACTIVE_100_GAMES.map((item, idx) => {
+  const gameTitle = item.at(0);
+  const gameCat = item.at(1);
+  const gameUrl = item.at(2);
+  const theme = CAT_THEMES[gameCat] || CAT_THEMES.Arcade;
+  return {
+    id: idx + 1,
+    title: gameTitle,
+    category: gameCat,
+    embedUrl: gameUrl,
+    icon: theme.icon,
+    coverSvg: buildGameCoverSVG(gameTitle, gameCat, idx)
+  };
+});
 const AVATARS = ["👾", "🦊", "🤖", "🐱", "🐉", "👽", "🦄", "🐼", "🦁", "🐸", "👻", "🔥"];
 const ACCENTS = ["#00e5ff", "#ff4081", "#00e676", "#ffab00", "#b388ff", "#ff5252"];
 
@@ -173,9 +173,6 @@ function persistProfile() {
   applyProfileUI();
 }
 
-// =========================================================================
-// 3. KATALOG & SØGNING
-// =========================================================================
 function setCategory(category, btnEl) {
   currentCategory = category;
   document.querySelectorAll(".cat-btn").forEach(b => b.classList.remove("active"));
@@ -221,9 +218,6 @@ function filterGames() {
   `).join("");
 }
 
-// =========================================================================
-// 4. SPILAFSPILLER (INDLÆSER RIGTIGE SPIL DIREKTE I IFRAME)
-// =========================================================================
 function launchGame(gameId) {
   const game = GAMES_DATA.find(g => g.id === gameId);
   if (!game) return;
@@ -287,9 +281,6 @@ function goFullscreen() {
   if (shell.requestFullscreen) shell.requestFullscreen();
 }
 
-// =========================================================================
-// 5. PROFIL MODAL
-// =========================================================================
 let tempAvatar = userProfile.avatar;
 let tempAccent = userProfile.accent;
 
