@@ -144,7 +144,69 @@ const GAMES_DATA = UNBLOCKED_100_GAMES.map((item, idx) => {
   return {
     id: idx + 1,
     title: gameTitle,
-    category: gameCat,function setCategory(category, btnEl) {
+    category: gameCat,
+    embedUrl: gameUrl,
+    rating: gameRating,
+    desc: gameDesc,
+    icon: theme.icon,
+    coverSvg: buildGameCoverSVG(gameTitle, gameCat, idx)
+  };
+});
+
+const AVATARS = ["👾", "🦊", "🤖", "🐱", "🐉", "👽", "🦄", "🐼", "🦁", "🐸", "👻", "🔥"];
+const ACCENTS = ["#00e5ff", "#ff4081", "#00e676", "#ffab00", "#b388ff", "#ff5252"];
+
+let userProfile = JSON.parse(localStorage.getItem("pixo_profile_v2")) || {
+  username: "Player1",
+  avatar: "👾",
+  accent: "#00e5ff",
+  xp: 0,
+  totalPlays: 0,
+  favorites: [],
+  recent: []
+};
+
+let currentCategory = "All";
+let activeGame = null;
+let heroGameId = 1;
+
+function getLevelInfo(xp) {
+  const level = Math.floor(xp / 100) + 1;
+  const currentLevelXp = xp % 100;
+  const titles = ["Rookie Gamer", "Arcade Fan", "Pro Player", "Cyber Champion", "Pixo Legend"];
+  const rankTitle = titles[Math.min(level - 1, titles.length - 1)];
+  return { level, currentLevelXp, rankTitle };
+}
+
+function applyProfileUI() {
+  document.documentElement.style.setProperty("--accent", userProfile.accent);
+  document.getElementById("headerAvatar").textContent = userProfile.avatar;
+  document.getElementById("headerUsername").textContent = userProfile.username;
+  const { level } = getLevelInfo(userProfile.xp);
+  document.getElementById("headerLevel").textContent = `Lvl ${level}`;
+}
+
+function persistProfile() {
+  localStorage.setItem("pixo_profile_v2", JSON.stringify(userProfile));
+  applyProfileUI();
+}
+function pickNewHero() {
+  const topGames = GAMES_DATA.slice(0, 12);
+  const randomHero = topGames.at(Math.floor(Math.random() * topGames.length));
+  if (!randomHero) return;
+  heroGameId = randomHero.id;
+  document.getElementById("heroTitle").textContent = randomHero.title;
+  document.getElementById("heroDesc").textContent = randomHero.desc;
+  document.getElementById("heroArt").textContent = randomHero.icon;
+  document.getElementById("heroPlayBtn").onclick = () => launchGame(randomHero.id);
+}
+
+function launchRandomGame() {
+  const randomGame = GAMES_DATA.at(Math.floor(Math.random() * GAMES_DATA.length));
+  if (randomGame) launchGame(randomGame.id);
+}
+
+function setCategory(category, btnEl) {
   currentCategory = category;
   document.querySelectorAll(".cat-btn").forEach(b => b.classList.remove("active"));
   btnEl.classList.add("active");
@@ -261,6 +323,7 @@ function goFullscreen() {
   const shell = document.getElementById("iframeShell");
   if (shell.requestFullscreen) shell.requestFullscreen();
 }
+
 let tempAvatar = userProfile.avatar;
 let tempAccent = userProfile.accent;
 
@@ -334,11 +397,3 @@ function saveProfile() {
 applyProfileUI();
 pickNewHero();
 filterGames();
-
-    embedUrl: gameUrl,
-    rating: gameRating,
-    desc: gameDesc,
-    icon: theme.icon,
-    coverSvg: buildGameCoverSVG(gameTitle, gameCat, idx)
-  };
-});
